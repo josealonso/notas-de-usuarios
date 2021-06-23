@@ -1,4 +1,4 @@
-package com.joseralonso.notesdemo.Entity;
+package com.joseralonso.notesdemo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

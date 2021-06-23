@@ -7,7 +7,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.joseralonso.notesdemo.Entity.Note;
+import com.joseralonso.notesdemo.entity.Note;
 
 @Repository
 public class NotesDAOJpaImpl implements NotesDAO {

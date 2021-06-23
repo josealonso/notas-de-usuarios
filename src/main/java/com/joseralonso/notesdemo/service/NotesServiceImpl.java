@@ -1,12 +1,13 @@
-package com.joseralonso.notesdemo.Service;
+package com.joseralonso.notesdemo.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.joseralonso.notesdemo.Entity.Note;
-import com.joseralonso.notesdemo.RestController.NotesRepository;
+import com.joseralonso.notesdemo.dao.NotesRepository;
+import com.joseralonso.notesdemo.entity.Note;
 
 public class NotesServiceImpl implements NotesService {
 
@@ -20,6 +21,18 @@ public class NotesServiceImpl implements NotesService {
 	@Override
 	public List<Note> findAll() {
 		return notesRepository.findAll();
+	}
+
+	@Override
+	public List<Note> findByUser(String user) {
+		List<Note> allNotes = notesRepository.findAll();
+		List<Note> notesByUser = allNotes.stream().filter(elem -> elem.getUserName().equals(user))
+		                                          .collect(Collectors.toList());
+		if (notesByUser.isEmpty()) {
+			throw new RuntimeException("Did not find user - " + user);
+		}
+		
+		return notesByUser;
 	}
 
 	@Override

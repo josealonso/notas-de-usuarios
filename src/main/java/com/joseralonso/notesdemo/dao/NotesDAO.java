@@ -2,7 +2,7 @@ package com.joseralonso.notesdemo.dao;
 
 import java.util.List;
 
-import com.joseralonso.notesdemo.Entity.Note;
+import com.joseralonso.notesdemo.entity.Note;
 
 public interface NotesDAO {
 
