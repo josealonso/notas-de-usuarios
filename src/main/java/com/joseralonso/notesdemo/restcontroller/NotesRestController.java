@@ -24,11 +24,6 @@ public class NotesRestController {
 	@Autowired
 	private NotesService notesService;
 	
-//	@Autowired
-//	public NotesRestController(NotesService theNotesService) {
-//	    notesService = theNotesService;
-//	}
-
 	@GetMapping("/notes")
 	public ResponseEntity<List<Note>> findAll() {
 		return new ResponseEntity<>(notesService.findAll(), HttpStatus.OK);

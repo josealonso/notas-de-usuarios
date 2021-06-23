@@ -6,26 +6,22 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.joseralonso.notesdemo.dao.NotesRepository;
+import com.joseralonso.notesdemo.dao.NotesJpaRepository;
 import com.joseralonso.notesdemo.entity.Note;
 
 public class NotesServiceImpl implements NotesService {
 
-	private NotesRepository notesRepository;
-
 	@Autowired
-	public NotesServiceImpl(NotesRepository notesRepository) {
-		this.notesRepository = notesRepository;
-	}
-	
+	private NotesJpaRepository notesJpaRepository;
+
 	@Override
 	public List<Note> findAll() {
-		return notesRepository.findAll();
+		return notesJpaRepository.findAll();
 	}
 
 	@Override
 	public List<Note> findByUser(String user) {
-		List<Note> allNotes = notesRepository.findAll();
+		List<Note> allNotes = notesJpaRepository.findAll();
 		List<Note> notesByUser = allNotes.stream().filter(elem -> elem.getUserName().equals(user))
 		                                          .collect(Collectors.toList());
 		if (notesByUser.isEmpty()) {
@@ -37,7 +33,7 @@ public class NotesServiceImpl implements NotesService {
 
 	@Override
 	public Note findById(int index) {
-		Optional<Note> result = notesRepository.findById(index);
+		Optional<Note> result = notesJpaRepository.findById(index);
 		Note theNote = null;
 		if (result.isPresent()) {
 			theNote = result.get();
@@ -50,12 +46,12 @@ public class NotesServiceImpl implements NotesService {
 
 	@Override
 	public void save(Note note) {
-		notesRepository.save(note);
+		notesJpaRepository.save(note);
 	}
 
 	@Override
 	public void deleteById(int index) {
-		notesRepository.deleteById(index);
+		notesJpaRepository.deleteById(index);
 	}
 
 }
