@@ -3,6 +3,8 @@ package com.joseralonso.notesdemo.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,40 +21,43 @@ import com.joseralonso.notesdemo.service.NotesService;
 @RequestMapping("/api/v1/notesApp")
 public class NotesRestController {
 
+	@Autowired
 	private NotesService notesService;
 	
-	@Autowired
-	public NotesRestController(NotesService theNotesService) {
-	    notesService = theNotesService;
-	}
+//	@Autowired
+//	public NotesRestController(NotesService theNotesService) {
+//	    notesService = theNotesService;
+//	}
 
 	@GetMapping("/notes")
-	public List<Note> findAll() {
-		return notesService.findAll();
+	public ResponseEntity<List<Note>> findAll() {
+		return new ResponseEntity<>(notesService.findAll(), HttpStatus.OK);
 	}
 
 	@PostMapping("/notes")
-	public Note addNote(@RequestBody String usuario) {
+	public ResponseEntity<Note> addNote(@RequestBody String usuario) {
 		int lastNoteId = 0;   // TODO
 		Note note = new Note();
 		note.setId(lastNoteId++);
-		return note;
+		return new ResponseEntity<>(note, HttpStatus.OK);
 	}
 
 	@PutMapping("/notes")
-	public Note updateNote(@RequestBody Note note) {
+	public ResponseEntity<Note> updateNote(@RequestBody Note note) {
 		notesService.save(note);
-		return note;
+		return new ResponseEntity<>(note, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/notes/{noteId}")
-	public String deleteNote(@PathVariable int noteId) {
+	public ResponseEntity<String> deleteNote(@PathVariable int noteId) {
 		Note tempNote = notesService.findById(noteId);
 		if (tempNote == null) {
-			throw new RuntimeException("Note id not found - " + noteId);
+			return new ResponseEntity<>("Note id not found - " + noteId, HttpStatus.NOT_FOUND);
 		}
-		notesService.deleteById(noteId);
-		return "Deleted note id - " + noteId;
+		else {
+			notesService.deleteById(noteId);
+			return new ResponseEntity<>("Deleted note id - " + noteId, HttpStatus.OK);
+		}
 	}
 
 }
