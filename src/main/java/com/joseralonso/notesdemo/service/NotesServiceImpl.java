@@ -16,14 +16,13 @@ public class NotesServiceImpl implements NotesService {
 	@Autowired
 	private NotesJpaRepository notesJpaRepository;
 
-	@Override
 	public List<Note> findAll() {
-		return notesJpaRepository.findAll();
+		return (List<Note>) notesJpaRepository.findAll();
 	}
 
 	@Override
 	public List<Note> findByUser(String user) {
-		List<Note> allNotes = notesJpaRepository.findAll();
+		List<Note> allNotes = (List<Note>) notesJpaRepository.findAll();
 		List<Note> notesByUser = allNotes.stream().filter(elem -> elem.getUserName().equals(user))
 		                                          .collect(Collectors.toList());
 		if (notesByUser.isEmpty()) {

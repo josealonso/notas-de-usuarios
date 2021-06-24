@@ -22,7 +22,7 @@ import com.joseralonso.notesdemo.entity.Note;
 public class NotesServiceTests {
 
 	@InjectMocks
-	NotesService service;
+	NotesServiceImpl service;
 	
 	@Mock
 	NotesJpaRepository dao;
@@ -38,7 +38,7 @@ public class NotesServiceTests {
 	public void initData() {
 		note_1 = new Note(1, "Jose", "titulo_1", "Esta es la nota-1");
 		note_2 = new Note(2, "Jesus", "título", "Esta es la nota-2");
-		note_3 = new Note(2, "Jose", "título", "Esta es la nota-3");
+		note_3 = new Note(3, "Jose", "título", "Esta es la nota-3");
 		notesOfJose = 2;
 		notesList.add(note_1);
 		notesList.add(note_2);
@@ -52,6 +52,7 @@ public class NotesServiceTests {
 		when(dao.findAll()).thenReturn(notesList);
 		
 		// test
+		System.out.println("===== Notes List: " + notesList.toString() + " ======");
 		List<Note> notes2List = service.findAll();
 		assertEquals(notesListSize, notes2List.size());
 		verify(dao, times(1)).findAll();

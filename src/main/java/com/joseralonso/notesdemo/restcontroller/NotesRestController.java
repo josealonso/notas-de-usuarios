@@ -29,18 +29,20 @@ public class NotesRestController {
 		return new ResponseEntity<>(notesService.findAll(), HttpStatus.OK);
 	}
 
-	@PostMapping("/notes")
-	public ResponseEntity<Note> addNote(@RequestBody String usuario) {
-		int lastNoteId = 0;   // TODO
-		Note note = new Note();
-		note.setId(lastNoteId++);
-		return new ResponseEntity<>(note, HttpStatus.OK);
+	@PostMapping("/newNote")
+	public Note addNote(@RequestBody Note newNote) {
+		int lastNoteId = 4;   // TODO
+		newNote.setId(7); // (lastNoteId++);
+		System.out.println("Nueva nota: " + newNote);
+		notesService.save(newNote);
+		return newNote;
 	}
 
-	@PutMapping("/notes")
-	public ResponseEntity<Note> updateNote(@RequestBody Note note) {
-		notesService.save(note);
-		return new ResponseEntity<>(note, HttpStatus.OK);
+//	@PutMapping("/notes/{noteId}")
+	@PutMapping("/notes/")
+	public ResponseEntity<Note> updateNote(@RequestBody Note updatedNote) {
+		notesService.save(updatedNote);
+		return new ResponseEntity<>(updatedNote, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/notes/{noteId}")

@@ -28,7 +28,8 @@ public class Note {
 	public Note() {
 	}
 	
-	public Note(Integer id, String userName, String noteTitle, String noteText) {
+	public Note(int id, String userName, String noteTitle, String noteText) {
+		this.id = id;
 		this.userName = userName;
 		this.noteTitle = noteTitle;
 		this.noteText = noteText;
