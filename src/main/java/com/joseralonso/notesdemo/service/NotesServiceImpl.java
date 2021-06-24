@@ -5,10 +5,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.joseralonso.notesdemo.dao.NotesJpaRepository;
 import com.joseralonso.notesdemo.entity.Note;
 
+@Service
 public class NotesServiceImpl implements NotesService {
 
 	@Autowired
