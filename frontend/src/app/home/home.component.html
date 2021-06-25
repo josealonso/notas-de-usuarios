@@ -1,0 +1,21 @@
+<div align='center'><h1>Lista de notas</h1></div>
+
+<table class ="table table-striped" >
+  <tr *ngFor="let n of notes">
+    <td>
+      {{n.id}}
+    </td>
+    <td>
+      {{n.text}}
+    </td>
+
+  </tr>
+</table>
+
+<br><br>
+
+    <input type="number" class="form-control" [(ngModel)] = 'idtoUpdate' placeholder="Enter User ID to update" />
+    <button class="btn btn-info" (click)= 'updateUser()'>Modificar nota</button>
+
+    <button class="btn btn-danger" [routerLink]="['/create']" routerLinkActive="router-link-active" >Crear nota</button>
+    
