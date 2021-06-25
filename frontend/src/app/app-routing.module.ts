@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { createComponent } from '@angular/compiler/src/core';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 
@@ -11,8 +10,6 @@ const routes: Routes = [
   // {path: 'edit', component: EditUserComponent},  // TODO
   {path: 'create', component: CreateUserComponent},
   {path: 'delete', component: DeleteUserComponent}
-
-
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Note } from '../model/Note';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-user',   //  'app-get-user'  'app-home'
@@ -10,8 +11,10 @@ export class HomeComponent implements OnInit {
 
   displayData: boolean;
   note: Note;
-  notes: Note[] = [];
-  constructor(private dataservice: DataService){}
+  notes: Note[];
+
+  constructor(private router: Router, private dataservice: DataService) {}
+
   getNotes(){
     this.dataservice.getNotes().subscribe(data => {
       this.notes = data;
