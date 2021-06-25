@@ -36,9 +36,9 @@ public class NotesServiceTests {
 	
 	@BeforeEach
 	public void initData() {
-		note_1 = new Note(1, "Jose", "titulo_1", "Esta es la nota-1");
-		note_2 = new Note(2, "Jesus", "título", "Esta es la nota-2");
-		note_3 = new Note(3, "Jose", "título", "Esta es la nota-3");
+		note_1 = new Note(1, "Jose",  "Esta es la nota-1");
+		note_2 = new Note(2, "Jesus", "Esta es la nota-2");
+		note_3 = new Note(3, "Jose",  "Esta es la nota-3");
 		notesOfJose = 2;
 		notesList.add(note_1);
 		notesList.add(note_2);

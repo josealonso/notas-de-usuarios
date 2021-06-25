@@ -23,7 +23,7 @@ public class NotesServiceImpl implements NotesService {
 	@Override
 	public List<Note> findByUser(String user) {
 		List<Note> allNotes = (List<Note>) notesJpaRepository.findAll();
-		List<Note> notesByUser = allNotes.stream().filter(elem -> elem.getUserName().equals(user))
+		List<Note> notesByUser = allNotes.stream().filter(elem -> elem.getUser().equals(user))
 		                                          .collect(Collectors.toList());
 		if (notesByUser.isEmpty()) {
 			throw new RuntimeException("Did not find user - " + user);

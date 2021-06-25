@@ -38,7 +38,6 @@ public class NotesRestController {
 		return newNote;
 	}
 
-//	@PutMapping("/notes/{noteId}")
 	@PutMapping("/notes/")
 	public ResponseEntity<Note> updateNote(@RequestBody Note updatedNote) {
 		notesService.save(updatedNote);

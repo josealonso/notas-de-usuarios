@@ -10,61 +10,54 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "notes")
 public class Note {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-    private Integer id;
-	
+	private Integer id;
+
 	@Column(name = "user_name")
-    private String userName;
-	
-	@Column(name = "note_title")
-    private String noteTitle;
-	
-	@Column(name = "note_text")
-    private String noteText;
+	private String user;
+
+	@Column(name = "note")
+	private String note;
 
 	public Note() {
 	}
-	
-	public Note(int id, String userName, String noteTitle, String noteText) {
+
+	public Note(int id, String userName, String noteText) {
 		this.id = id;
-		this.userName = userName;
-		this.noteTitle = noteTitle;
-		this.noteText = noteText;
+		this.user = userName;
+		this.note = noteText;
 	}
 
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
+
+	public String getUser() {
+		return user;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+
+	public void setUser(String user) {
+		this.user = user;
 	}
-	public String getNoteTitle() {
-		return noteTitle;
+
+	public String getNote() {
+		return note;
 	}
-	public void setNoteTitle(String noteTitle) {
-		this.noteTitle = noteTitle;
-	}
-	public String getNoteText() {
-		return noteText;
-	}
-	public void setNoteText(String noteText) {
-		this.noteText = noteText;
+
+	public void setNote(String note) {
+		this.note = note;
 	}
 
 	@Override
 	public String toString() {
-		return "Note [id=" + id + ", userName=" + userName + ", noteTitle=" + noteTitle + ", noteText=" + noteText
-				+ "]";
+		return "Note [id=" + id + ", user=" + user + ", note=" + note + "]";
 	}
-			
+	
 }
-
